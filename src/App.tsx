@@ -7,7 +7,7 @@ import Rezepte from "./pages/Rezepte/Rezepte";
 import Ueberuns from "./pages/Uns/Ueberuns";
 import Banner from "./components/Banner/Banner";
 import { useState } from "react";
-import { SearchTermContext } from "./context/searchTermContext";
+import { SearchTermContext } from "./context/SearchTermContext";
 import { DarkModeContext } from "./context/DarkModeContext";
 
 function App() {

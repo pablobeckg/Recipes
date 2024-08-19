@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import supabaseClient from "../../lib/supabaseClient";
 import Recipe from "../../models/Recipe";
 import "./NewRecipes.css";
-import { useSearchTermContext } from "../../context/searchTermContext.tsx";
+import { useSearchTermContext } from "../../context/SearchTermContext";
 
 const NewRecipes = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
