@@ -2,12 +2,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: white;
+    padding: 4rem;
+}
+
+.new-recipes > h1 {
+    font-size: 2.2rem;
 }
 
 .new-list {
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding: 2rem;
 }
 
 .new-list-item {
@@ -15,7 +22,7 @@
     grid-template-columns: 34% 66%;
     background-color: #F5F2F2;
     border-radius: 33px;
-    margin: 2rem;
+    margin: 1rem;
 }
 
 .new-image {

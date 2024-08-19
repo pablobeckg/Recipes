@@ -3,9 +3,10 @@ import "./Navigation.css"
 
 const Navigation = () => {
     return (
-        <nav>
+        <nav className="header-nav">
             <NavLink to="/">Home</NavLink>
             <NavLink to="/rezepte">Rezepte</NavLink>
+            <NavLink to="/ueberuns">Über uns</NavLink>
         </nav>
     );
 }
