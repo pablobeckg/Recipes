@@ -3,6 +3,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --primary-color: #2C2B2B;
+  --secundary-color: #FFDB63;
+  --light-background-color: white;
 
 }
 
@@ -27,7 +29,7 @@ a:hover {
 
 body {
   width: 100%;
-  background-color: #FFDB63;
+  background-color: var(--secundary-color);
 }
 /* body {
   display: flex;
@@ -42,7 +44,7 @@ button {
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-family: inherit;
-  background-color: #FFDB63
+  background-color: var(--secundary-color);
   ;
   cursor: pointer;
   transition: border-color 0.25s;

@@ -6,13 +6,17 @@ import Home from "./pages/Home/Home";
 import Rezepte from "./pages/Rezepte/Rezepte";
 import Ueberuns from "./pages/Uns/Ueberuns";
 import Banner from "./components/Banner/Banner";
+import { useState } from "react";
+import { SearchTermContext } from "./context/searchTermContext";
 
 function App() {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
   return (
-    <>
+    <SearchTermContext.Provider value={{searchTerm, setSearchTerm}}>
       <BrowserRouter>
         <Header />
-        <Banner/>
+        <Banner />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/rezepte" element={<Rezepte />} />
@@ -20,7 +24,7 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
-    </>
+    </SearchTermContext.Provider>
   );
 }
 

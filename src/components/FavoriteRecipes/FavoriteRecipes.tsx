@@ -2,23 +2,23 @@ import { useEffect, useState } from "react";
 import "./FavoriteRecipes.css";
 import supabaseClient from "../../lib/supabaseClient";
 import Recipe from "../../models/Recipe";
+import { useSearchTermContext } from "../../context/searchTermContext";
 
 const FavoriteRecipes = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const { searchTerm } = useSearchTermContext();
 
   useEffect(() => {
-    supabaseClient
-      .from("recipes")
-      .select("*")
-      .then((result) => {
-        console.log(result);
-      });
     const fetchRecipes = async () => {
       let selectQuery = supabaseClient
         .from("recipes")
         .select("*")
         .order("rating", { ascending: false })
         .limit(3);
+
+      if (searchTerm) {
+        selectQuery = selectQuery.ilike("name", `%${searchTerm}%`);
+      }
       const result = await selectQuery;
       if (result.error) {
         console.error(result.error);
@@ -28,11 +28,11 @@ const FavoriteRecipes = () => {
       }
     };
     fetchRecipes();
-  }, []);
+  }, [searchTerm]);
 
   return (
     <section className="favorite-recipes">
-      <h1>Die beliebtesten Rezepte</h1>
+      {!searchTerm && <h1>Die beliebtesten Rezepte</h1>}
       <div className="favorite-list">
         {!recipes && <p>Loading...</p>}
         {recipes &&
@@ -42,7 +42,10 @@ const FavoriteRecipes = () => {
               key={recipe.id}
               className={`favorite-list-item ${recipe.name}`}
             >
-              <div className="favorite-image" style={{ backgroundImage: `url(${recipe.imageUrl})` }}></div>
+              <div
+                className="favorite-image"
+                style={{ backgroundImage: `url(${recipe.imageUrl})` }}
+              ></div>
               <div className="favorite-information">
                 <h1>{recipe.name}</h1>
                 <p>{recipe.description}</p>
