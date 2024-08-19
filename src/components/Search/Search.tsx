@@ -1,4 +1,4 @@
-import { useSearchTermContext } from "../../context/searchTermContext";
+import { useSearchTermContext } from "../../context/searchTermContext.tsx";
 import "./Search.css";
 
 const Search = () => {
