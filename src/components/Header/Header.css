@@ -3,8 +3,7 @@ header {
     justify-content: space-evenly;
     align-items: center;
     padding: 2rem;
-    background-color: white;
-    margin-top: 2rem;
+    background-color: var(--background-color);
     width: 100%;
 }
 

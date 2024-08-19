@@ -1,6 +1,7 @@
 .header-nav {
     display: flex;
     gap: 2.5rem;
+    align-items: center;
 }
 .header-nav a {
     font-size: 1.5rem;

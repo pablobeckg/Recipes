@@ -5,6 +5,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--secundary-color);
 }
 
 .footer-title {

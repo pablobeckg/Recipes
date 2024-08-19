@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--light-background-color);
+    background-color: var(--background-color);
     padding: 4rem;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .favorite-list-item {
-    background-color: #F5F2F2;
+    background-color: var(--box-color);
     border-radius: 33px;
 }
 

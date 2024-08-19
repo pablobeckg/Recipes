@@ -1,5 +1,5 @@
 .search-bar {
-  background-color: var(--light-background-color);
+  background-color: var(--background-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,4 +11,5 @@
     border: none;
     background-color: rgb(231, 231, 231);
     border-radius: 5px;
+    color: black;
 }
