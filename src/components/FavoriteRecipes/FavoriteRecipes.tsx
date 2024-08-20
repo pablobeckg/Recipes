@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "./FavoriteRecipes.css";
 import supabaseClient from "../../lib/supabaseClient";
-import Recipe from "../../models/Recipe";
 import { useSearchTermContext } from "../../context/SearchTermContext";
+import { Recipe } from "../../types/supabase-types-own";
 
 const FavoriteRecipes = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
