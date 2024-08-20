@@ -1,0 +1,27 @@
+.recipe-image-container {
+    width: 100%;
+    height: 362px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .image-black-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+  }
+  .recipe-image-container h1 {
+    color: white;
+    width: 70%;
+    font-size: 2.5rem;
+  }
+
+  .recipe-information {
+    background-color: var(--background-color);
+    padding: 2rem 4rem;
+  }
+  

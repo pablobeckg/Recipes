@@ -3,6 +3,7 @@ import "./FavoriteRecipes.css";
 import supabaseClient from "../../lib/supabaseClient";
 import { useSearchTermContext } from "../../context/SearchTermContext";
 import { Recipe } from "../../types/supabase-types-own";
+import { Link } from "react-router-dom";
 
 const FavoriteRecipes = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -49,7 +50,7 @@ const FavoriteRecipes = () => {
               <div className="favorite-information">
                 <h1>{recipe.name}</h1>
                 <p>{recipe.description}</p>
-                <button>Zum rezept</button>
+                <Link to={`/rezepte/${recipe.id}`}><button>Zum rezept</button></Link>
               </div>
             </article>
           ))}

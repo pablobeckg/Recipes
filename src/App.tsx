@@ -5,10 +5,10 @@ import Header from "./components/Header/Header";
 import Home from "./pages/Home/Home";
 import Rezepte from "./pages/Rezepte/Rezepte";
 import Ueberuns from "./pages/Uns/Ueberuns";
-import Banner from "./components/Banner/Banner";
 import { useState } from "react";
 import { SearchTermContext } from "./context/SearchTermContext";
 import { DarkModeContext } from "./context/DarkModeContext";
+import RecipeDetailPage from "./pages/RecipeDetailPage/RecipeDetailPage";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -21,11 +21,11 @@ function App() {
           <BrowserRouter>
             <div className="colored-line"></div>
             <Header />
-            <Banner />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/rezepte" element={<Rezepte />} />
               <Route path="/ueberuns" element={<Ueberuns />} />
+              <Route path="/rezepte/:id" element={<RecipeDetailPage />} />
             </Routes>
             <Footer />
           </BrowserRouter>

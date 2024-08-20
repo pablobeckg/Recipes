@@ -3,6 +3,7 @@ import supabaseClient from "../../lib/supabaseClient";
 import "./NewRecipes.css";
 import { useSearchTermContext } from "../../context/SearchTermContext";
 import { Recipe } from "../../types/supabase-types-own";
+import { Link } from "react-router-dom";
 
 const NewRecipes = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -51,7 +52,7 @@ const NewRecipes = () => {
                   <div className="new-information">
                     <h1>{recipe.name}</h1>
                     <p>{recipe.description}</p>
-                    <button>Zum rezept</button>
+                    <Link to={`/rezepte/${recipe.id}`}><button>Zum rezept</button></Link>
                   </div>
                 </article>
               ))}
