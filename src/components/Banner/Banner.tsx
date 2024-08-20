@@ -6,10 +6,12 @@ const Banner = () => {
       className="banner-container"
       style={{ backgroundImage: `url("/images/Banner.jpg")` }}
     >
-      <h1>
-        Lassen Sie sich inspirieren, kochen Sie mit Leidenschaft und erleben Sie
-        unvergessliche Momente bei Tisch.
-      </h1>
+      <div className="black-overlay">
+        <h1>
+          Lassen Sie sich inspirieren, kochen Sie mit Leidenschaft und erleben
+          Sie unvergessliche Momente bei Tisch.
+        </h1>
+      </div>
     </section>
   );
 };
