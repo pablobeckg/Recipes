@@ -3,9 +3,4 @@
   margin: 0 auto;
   color: var(--primary-color);
   font-family: "Inter";
-  background-color: var(--secundary-color);
-}
-.colored-line {
-  height: 2rem;
-  background-color: var(--secundary-color);
 }

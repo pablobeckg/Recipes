@@ -1,0 +1,16 @@
+.login-status {
+    height: 3rem;
+    background-color: var(--secundary-color);
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  }
+
+  .login-status button {
+    background-color: var(--background-color);
+    margin-right: 1rem;
+  }
+
+  .login-status span {
+    margin-right: 1rem;
+  }

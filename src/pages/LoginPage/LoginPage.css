@@ -1,0 +1,30 @@
+.login-container {
+    padding: 4rem;
+    background-color: var(--background-color);
+}
+
+.login-form {
+    margin-bottom: 2rem;
+}
+
+.login-form h2 {
+    margin-bottom: 2rem;
+}
+
+.login-form input {
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.error-message {
+    color: red;
+    margin: 1rem 0;
+    font-weight: 600;
+}
+
+.success-message {
+    color: green;
+    margin: 1rem 0;
+    font-weight: 600;
+}

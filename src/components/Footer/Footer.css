@@ -1,11 +1,15 @@
 footer {
-  height: 273px;
-  width: 70%;
-  padding: 4rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--secundary-color);
+    background-color: var(--secundary-color);
+}
+
+.footer-content{
+    height: 273px;
+    width: 70%;
+    padding: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
 }
 
 .footer-title {

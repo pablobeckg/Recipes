@@ -4,6 +4,7 @@ import "./Footer.css"
 const Footer = () => {
     return (
         <footer>
+            <div className="footer-content">
             <div className="footer-title">
                 <Icon/>
                 <h1>Die Rezeptwelt</h1>
@@ -17,6 +18,8 @@ const Footer = () => {
                     <img src="/images/Pinterest Icon.png" alt="" />
                 </nav>
             </div>
+            </div>
+            
         </footer>
     );
 }
