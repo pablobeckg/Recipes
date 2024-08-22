@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Icon from "../../assets/svg/Icon";
 import Navigation from "../Navigation/Navigation";
 import "./Header.css";
-import LoginStatus from "../LoginStatus/LoginStatus";
 
 const Header = () => {
   return (
