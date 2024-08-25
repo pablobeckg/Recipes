@@ -12,6 +12,9 @@ import RecipeDetailPage from "./pages/RecipeDetailPage/RecipeDetailPage";
 import { UserProvider } from "./context/UserContext";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import LoginStatus from "./components/LoginStatus/LoginStatus";
+import Signup from "./pages/Signup/Signup";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -23,14 +26,18 @@ function App() {
         <div className={darkMode ? "dark-mode app-container" : "app-container"}>
           <SearchTermContext.Provider value={{ searchTerm, setSearchTerm }}>
             <BrowserRouter>
-              <LoginStatus/>
+              <LoginStatus />
               <Header />
               <Routes>
-                <Route path="/" element={<Home />} />
                 <Route path="/login" element={<LoginPage />} />
-                <Route path="/rezepte" element={<Rezepte />} />
-                <Route path="/ueberuns" element={<Ueberuns />} />
-                <Route path="/rezepte/:id" element={<RecipeDetailPage />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route element={<PrivateRoute />}>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/rezepte" element={<Rezepte />} />
+                  <Route path="/ueberuns" element={<Ueberuns />} />
+                  <Route path="/rezepte/:id" element={<RecipeDetailPage />} />
+                  <Route path="/profile" element={<ProfilePage />} />
+                </Route>
               </Routes>
               <Footer />
             </BrowserRouter>
