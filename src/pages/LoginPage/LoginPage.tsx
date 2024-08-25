@@ -94,7 +94,7 @@ const LoginPage = () => {
         {successMessage && <p className="success-message">{successMessage}</p>}
         <button type="submit">Login</button>
       </form>
-      <div className="reset-password-container">
+      <div className="account-buttons-container">
         <button className="additional-button" onClick={handleResetPassword}>
           Forgot your password?
         </button>

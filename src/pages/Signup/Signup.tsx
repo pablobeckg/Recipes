@@ -1,5 +1,6 @@
 import { useState } from "react";
 import supabaseClient from "../../lib/supabaseClient";
+import "./Signup.css"
 
 const SignUpPage = () => {
   const [email, setEmail] = useState<string>("");

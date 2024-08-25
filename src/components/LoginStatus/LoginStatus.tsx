@@ -13,26 +13,28 @@ const LoginStatus = () => {
     const signoutResponse = await supabaseClient.auth.signOut();
 
     if (signoutResponse.error) {
-        console.error('Logout error', signoutResponse.error)
-    }else {
-        userContext?.setUser(null);
+      console.error("Logout error", signoutResponse.error);
+    } else {
+      userContext?.setUser(null);
     }
-  }
+  };
 
   return (
     <div className="login-status">
       {user ? (
         <div>
-           <span>Welcome, </span>
+          <span>Welcome, </span>
           <span>
             <Link to="/profile">{user.email}</Link>
           </span>
-          <button className="logout-button" onClick={(handleLogoutClicked)}>Logout</button>
+          <button className="logout-button" onClick={handleLogoutClicked}>
+            Logout
+          </button>
         </div>
       ) : (
-        <button>
-          <Link to="/login">Login</Link>
-        </button>
+        <Link to="/login">
+          <button>Login </button>
+        </Link>
       )}
     </div>
   );

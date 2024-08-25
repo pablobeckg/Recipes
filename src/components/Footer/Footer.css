@@ -1,6 +1,9 @@
 footer {
     background-color: var(--secundary-color);
+    bottom: 0; 
+    width: 100%;
 }
+
 
 .footer-content{
     height: 273px;

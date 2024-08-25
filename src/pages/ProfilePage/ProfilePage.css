@@ -1,0 +1,9 @@
+.profile-page {
+    flex: 1;
+    padding: 4rem;
+    
+}
+
+.profile-page p {
+    margin-bottom: 1rem;
+}

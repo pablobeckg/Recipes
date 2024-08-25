@@ -1,0 +1,24 @@
+.signup-container{
+    flex: 1;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+}
+
+.signup-form h2{
+    margin-bottom: 2rem;
+}
+
+.signup-form input {
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 10px;
+    width: 20rem;
+}
+
+.signup-form button {
+    width: 20rem;
+}
