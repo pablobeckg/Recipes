@@ -76,6 +76,7 @@ const LoginPage = () => {
     <div className="login-container">
       <form className="login-form" onSubmit={handleLogin}>
         <h2>Login to your account</h2>
+        <p>- Try: beckgarreaud@gmail.com / iliketocook -</p>
         <input
           type="email"
           value={email}
