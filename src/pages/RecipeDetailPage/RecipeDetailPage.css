@@ -24,4 +24,12 @@
     background-color: var(--background-color);
     padding: 2rem 4rem;
   }
+
+  .recipe-information button {
+margin: 1rem 0;
+  }
+
+  .recipe-information h2 {
+    margin: 1rem 0;
+  }
   

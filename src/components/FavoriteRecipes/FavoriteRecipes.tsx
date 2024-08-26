@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 const FavoriteRecipes = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  // const [favoriteRecipes, setFavoriteRecipes] = useState<RecipeFavorites[]>([]);
   const { searchTerm } = useSearchTermContext();
 
   useEffect(() => {
@@ -31,6 +32,21 @@ const FavoriteRecipes = () => {
     fetchRecipes();
   }, [searchTerm]);
 
+  // useEffect(() => {
+  //   const fetchFavoriteRecipes = async () => {
+  //     let selectQuery = supabaseClient.from("recipe_favorites").select("*");
+
+  //     const resultFavorites = await selectQuery;
+  //     if (resultFavorites.error) {
+  //       console.error(resultFavorites.error);
+  //       setFavoriteRecipes([]);
+  //     } else {
+  //       setFavoriteRecipes(resultFavorites.data);
+  //     }
+  //   };
+  //   fetchFavoriteRecipes();
+  // }, []);
+
   return (
     <section className="favorite-recipes">
       {!searchTerm && <h1>Die beliebtesten Rezepte</h1>}
@@ -50,7 +66,9 @@ const FavoriteRecipes = () => {
               <div className="favorite-information">
                 <h1>{recipe.name}</h1>
                 <p>{recipe.description}</p>
-                <Link to={`/rezepte/${recipe.id}`}><button>Zum rezept</button></Link>
+                <Link to={`/rezepte/${recipe.id}`}>
+                  <button>Zum rezept</button>
+                </Link>
               </div>
             </article>
           ))}

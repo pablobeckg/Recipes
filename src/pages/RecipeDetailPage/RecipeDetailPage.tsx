@@ -3,14 +3,17 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { RecipeComplete } from "../../types/supabase-types-own";
 import supabaseClient from "../../lib/supabaseClient";
+import { useUserContext } from "../../context/UserContext";
 const RecipeDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const [recipe, setRecipe] = useState<RecipeComplete | null>(null);
-  console.log(id);
+  const userContext = useUserContext();
+  const user = userContext?.user;
+
   useEffect(() => {
     const fetchSingleRecipe = async () => {
       if (!id) {
-        console.error("No quiz id given.");
+        console.error("No recipe id given.");
         return;
       }
 
@@ -52,9 +55,46 @@ const RecipeDetailPage = () => {
     fetchSingleRecipe();
   }, [id]);
 
+  if (!user) {
+    console.error("User not found");
+    return;
+  }
+
   if (!recipe) {
     return <p>No result</p>;
   }
+
+  const handleFavorite = () => {
+    submitResultToSupabase(recipe.id) ;
+  };
+
+  const submitResultToSupabase = async (id: string) => {
+    const deletePreviousFavoriteRecipeResponse = await supabaseClient
+      .from("recipe_favorites")
+      .delete()
+      .eq("recipe_id", recipe.id)
+      .eq("user_id", user.id);
+    if (deletePreviousFavoriteRecipeResponse.error) {
+      console.error(
+        "Error deleting favorite recipe",
+        deletePreviousFavoriteRecipeResponse.error
+      );
+    } else {
+      console.log("Previous favorite recipe successfully deleted");
+    }
+
+    const favoriteRecipeResponse = await supabaseClient
+      .from('recipe_favorites')
+
+      .insert({ recipe_id: id});
+
+    if (favoriteRecipeResponse.error) {
+      console.error('Favorite recipe could not be saved', favoriteRecipeResponse.error);
+    } else {
+      console.log('Favorite recipe successfully saved');
+    }
+  };
+
   return (
     <>
       <section
@@ -62,9 +102,7 @@ const RecipeDetailPage = () => {
         style={{ backgroundImage: `url(${recipe.imageUrl})` }}
       >
         <div className="image-black-overlay">
-          <h1>
-        {recipe.name}
-          </h1>
+          <h1>{recipe.name}</h1>
         </div>
       </section>
       <main className="recipe-information">
@@ -80,8 +118,9 @@ const RecipeDetailPage = () => {
         <h2>Zubereitung</h2>
         <p>{recipe.instructions}</p>
 
-        <h3>Zusätzliche Informationen</h3>
+        <h2>Zusätzliche Informationen</h2>
         <p>{recipe.description}</p>
+        <button onClick={handleFavorite}>Add to favorites</button>
       </main>
     </>
   );
