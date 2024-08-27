@@ -33,22 +33,22 @@ const Beliebtesten = () => {
 
 
   return (
-    <section className="favorite-recipes">
+    <section className="beliebtesten-recipes">
       {!searchTerm && <h1>Die beliebtesten Rezepte</h1>}
-      <div className="favorite-list">
+      <div className="beliebtesten-list">
         {!recipes && <p>Loading...</p>}
         {recipes &&
           recipes.length > 0 &&
           recipes.map((recipe) => (
             <article
               key={recipe.id}
-              className={`favorite-list-item ${recipe.name}`}
+              className={`beliebtesten-list-item ${recipe.name}`}
             >
               <div
-                className="favorite-image"
+                className="beliebtesten-image"
                 style={{ backgroundImage: `url(${recipe.imageUrl})` }}
               ></div>
-              <div className="favorite-information">
+              <div className="beliebtesten-information">
                 <h1>{recipe.name}</h1>
                 <p>{recipe.description}</p>
                 <Link to={`/rezepte/${recipe.id}`}>

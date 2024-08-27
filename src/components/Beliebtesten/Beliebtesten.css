@@ -1,4 +1,4 @@
-.favorite-recipes {
+.beliebtesten-recipes {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,11 +6,11 @@
     padding: 4rem;
 }
 
-.favorite-recipes > h1 {
+.beliebtesten-recipes > h1 {
     font-size: 2.2rem;
 }
 
-.favorite-list {
+.beliebtesten-list {
     margin-top: 4rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -18,12 +18,12 @@
     width: 100%;
 }
 
-.favorite-list-item {
+.beliebtesten-list-item {
     background-color: var(--box-color);
     border-radius: 33px;
 }
 
-.favorite-image {
+.beliebtesten-image {
     height: 212px;
     border-radius: 33px 33px 0 0 ;
     width: 100%;
@@ -31,7 +31,7 @@
     background-size: cover;
 }
 
-.favorite-information {
+.beliebtesten-information {
     padding: 2rem;
     display: flex;
     flex-direction: column;

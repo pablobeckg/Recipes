@@ -55,10 +55,12 @@ const Favoriten = () => {
   );
 
   return (
+    
     <section className="favorite-recipes">
-      <h1>Meine Favoriten</h1>
+    <h1>Meine Favoriten</h1>
+    {!favoriteRecipes.length && <h2>Noch keine Favoriten</h2>}
       <div className="favorite-list">
-        {!favoriteRecipes.length && <p>Loading...</p>}
+        {!favoriteRecipes && <p>Loading...</p>}
         {favoriteRecipes.length > 0 &&
           favoriteRecipes.map((recipe) => (
             <article
@@ -80,6 +82,7 @@ const Favoriten = () => {
           ))}
       </div>
     </section>
+        
   );
 };
 

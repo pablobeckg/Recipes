@@ -3,11 +3,15 @@
     flex-direction: column;
     align-items: center;
     background-color: var(--background-color);
-    padding: 4rem;
+    padding: 2rem 4rem 0 4rem;
 }
 
 .favorite-recipes > h1 {
     font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+.favorite-recipes > h2 {
+    align-self: self-start;
 }
 
 .favorite-list {
