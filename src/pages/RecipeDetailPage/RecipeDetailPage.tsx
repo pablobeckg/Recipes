@@ -1,14 +1,23 @@
 import "./RecipeDetailPage.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { RecipeComplete } from "../../types/supabase-types-own";
 import supabaseClient from "../../lib/supabaseClient";
 import { useUserContext } from "../../context/UserContext";
+import {
+  Ingredients,
+  RecipeWithFavorite,
+} from "../../types/supabase-types-own";
+import { FaRegStar, FaStar } from "react-icons/fa";
+
 const RecipeDetailPage = () => {
   const { id } = useParams<{ id: string }>();
-  const [recipe, setRecipe] = useState<RecipeComplete | null>(null);
+  const [recipe, setRecipe] = useState<RecipeWithFavorite | null>(null);
   const userContext = useUserContext();
   const user = userContext?.user;
+
+  if (!user) {
+    return;
+  }
 
   useEffect(() => {
     const fetchSingleRecipe = async () => {
@@ -17,81 +26,63 @@ const RecipeDetailPage = () => {
         return;
       }
 
-      const supabaseResponse = await supabaseClient
+      let selectQuery = supabaseClient
         .from("recipes")
-        .select(
-          `
-            category_id,
-            created_at,
-            description,
-            id,
-            imageUrl,
-            instructions,
-            name,
-            rating,
-            servings,
-            ingredients (
-                additionalInfo,
-                created_at,
-                id,
-                name,
-                quantity,
-                recipe_id,
-                unit
-            )
-            `
-        )
+        .select("*, ingredients(*), recipe_favorites(recipe_id)")
         .eq("id", id)
         .single();
-      if (supabaseResponse.error) {
+
+      const result = await selectQuery;
+
+      if (result.error) {
         console.error("Recipe not found in database");
-        return;
+        setRecipe(null);
       }
-      if (supabaseResponse.data) {
-        setRecipe(supabaseResponse.data);
-        console.log(supabaseResponse.data);
+      if (result.data) {
+        console.log(result.data);
+        setRecipe(result.data);
       }
     };
     fetchSingleRecipe();
-  }, [id]);
-
-  if (!user) {
-    console.error("User not found");
-    return;
-  }
+  }, [id, recipe?.recipe_favorites]);
 
   if (!recipe) {
     return <p>No result</p>;
   }
 
-  const handleFavorite = () => {
-    submitResultToSupabase(recipe.id) ;
-  };
+  const toggleFavorite = async (recipeId: string) => {
+    const selectedRecipe = recipe.recipe_favorites;
 
-  const submitResultToSupabase = async (id: string) => {
-    const deletePreviousFavoriteRecipeResponse = await supabaseClient
-      .from("recipe_favorites")
-      .delete()
-      .eq("recipe_id", recipe.id)
-      .eq("user_id", user.id);
-    if (deletePreviousFavoriteRecipeResponse.error) {
-      console.error(
-        "Error deleting favorite recipe",
-        deletePreviousFavoriteRecipeResponse.error
-      );
-    } else {
-      console.log("Previous favorite recipe successfully deleted");
+    if (!selectedRecipe) {
+      return;
     }
+    const isFavorite = selectedRecipe.some((fav) => fav.recipe_id === recipeId);
 
-    const favoriteRecipeResponse = await supabaseClient
-      .from('recipe_favorites')
+    if (isFavorite) {
+      const supabaseDeleteResponse = await supabaseClient
+        .from("recipe_favorites")
+        .delete()
+        .eq("recipe_id", recipe.id)
+        .eq("user_id", user.id);
 
-      .insert({ recipe_id: id});
-
-    if (favoriteRecipeResponse.error) {
-      console.error('Favorite recipe could not be saved', favoriteRecipeResponse.error);
-    } else {
-      console.log('Favorite recipe successfully saved');
+      if (supabaseDeleteResponse.error) {
+        console.error("Error deleting favorite", supabaseDeleteResponse.error);
+      } else {
+        console.log("Previous favorite recipe successfully deleted");
+      }
+    }
+    if (!isFavorite) {
+      const favoriteRecipeResponse = await supabaseClient
+        .from("recipe_favorites")
+        .insert({ recipe_id: recipe.id });
+      if (favoriteRecipeResponse.error) {
+        console.error(
+          "Favorite recipe could not be saved",
+          favoriteRecipeResponse.error
+        );
+      } else {
+        console.log("Favorite recipe successfully saved");
+      }
     }
   };
 
@@ -108,7 +99,7 @@ const RecipeDetailPage = () => {
       <main className="recipe-information">
         <h2>Zutaten</h2>
         <ul>
-          {recipe.ingredients.map((ingredient) => (
+          {recipe.ingredients.map((ingredient: Ingredients) => (
             <li key={ingredient.id}>
               {ingredient.quantity} {ingredient.unit} {ingredient.name}
             </li>
@@ -120,7 +111,18 @@ const RecipeDetailPage = () => {
 
         <h2>Zusätzliche Informationen</h2>
         <p>{recipe.description}</p>
-        <button onClick={handleFavorite}>Add to favorites</button>
+        <div
+          className="quiz-favorite-icon"
+          onClick={() => toggleFavorite(recipe.id)}
+        >
+          {recipe.recipe_favorites.find(
+            (favorite) => favorite.recipe_id === recipe.id
+          ) ? (
+            <FaStar />
+          ) : (
+            <FaRegStar />
+          )}
+        </div>
       </main>
     </>
   );

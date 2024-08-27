@@ -32,21 +32,6 @@ const FavoriteRecipes = () => {
     fetchRecipes();
   }, [searchTerm]);
 
-  // useEffect(() => {
-  //   const fetchFavoriteRecipes = async () => {
-  //     let selectQuery = supabaseClient.from("recipe_favorites").select("*");
-
-  //     const resultFavorites = await selectQuery;
-  //     if (resultFavorites.error) {
-  //       console.error(resultFavorites.error);
-  //       setFavoriteRecipes([]);
-  //     } else {
-  //       setFavoriteRecipes(resultFavorites.data);
-  //     }
-  //   };
-  //   fetchFavoriteRecipes();
-  // }, []);
-
   return (
     <section className="favorite-recipes">
       {!searchTerm && <h1>Die beliebtesten Rezepte</h1>}

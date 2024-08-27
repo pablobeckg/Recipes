@@ -129,6 +129,8 @@ export type Database = {
       }
       recipes: {
         Row: {
+          ingredients: any
+          some(arg0: (fav: any) => boolean): unknown
           category_id: string | null
           created_at: string
           description: string

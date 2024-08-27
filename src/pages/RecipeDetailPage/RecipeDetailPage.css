@@ -32,4 +32,14 @@ margin: 1rem 0;
   .recipe-information h2 {
     margin: 1rem 0;
   }
+
+  .quiz-favorite-icon {
+    cursor: pointer;
+    font-size: 4rem; 
+    padding: 1rem 0;
+  }
+
+  .quiz-favorite-icon path {
+    fill: #dab605; 
+  }
   
