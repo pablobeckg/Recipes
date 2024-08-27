@@ -1,0 +1,40 @@
+.favorite-recipes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background-color);
+    padding: 4rem;
+}
+
+.favorite-recipes > h1 {
+    font-size: 2.2rem;
+}
+
+.favorite-list {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+    width: 100%;
+}
+
+.favorite-list-item {
+    background-color: var(--box-color);
+    border-radius: 33px;
+}
+
+.favorite-image {
+    height: 212px;
+    border-radius: 33px 33px 0 0 ;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+.favorite-information {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+    gap: 1rem;
+}

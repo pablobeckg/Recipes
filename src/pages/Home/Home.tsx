@@ -1,6 +1,6 @@
 
 import Banner from "../../components/Banner/Banner";
-import FavoriteRecipes from "../../components/FavoriteRecipes/FavoriteRecipes";
+import Beliebtesten from "../../components/Beliebtesten/Beliebtesten";
 import Search from "../../components/Search/Search";
 import "./Home.css"
 
@@ -10,7 +10,7 @@ const Home = () => {
         <main>
              <Banner />
             <Search/>
-            <FavoriteRecipes/>
+            <Beliebtesten/>
         </main>
     );
 }

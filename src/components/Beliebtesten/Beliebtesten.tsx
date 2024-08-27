@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import "./FavoriteRecipes.css";
+import "./Beliebtesten.css";
 import supabaseClient from "../../lib/supabaseClient";
 import { useSearchTermContext } from "../../context/SearchTermContext";
 import { Recipe } from "../../types/supabase-types-own";
 import { Link } from "react-router-dom";
 
-const FavoriteRecipes = () => {
+const Beliebtesten = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  // const [favoriteRecipes, setFavoriteRecipes] = useState<RecipeFavorites[]>([]);
   const { searchTerm } = useSearchTermContext();
 
   useEffect(() => {
@@ -31,6 +30,7 @@ const FavoriteRecipes = () => {
     };
     fetchRecipes();
   }, [searchTerm]);
+
 
   return (
     <section className="favorite-recipes">
@@ -62,4 +62,4 @@ const FavoriteRecipes = () => {
   );
 };
 
-export default FavoriteRecipes;
+export default Beliebtesten;

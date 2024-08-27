@@ -12,6 +12,7 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 const RecipeDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const [recipe, setRecipe] = useState<RecipeWithFavorite | null>(null);
+  const [refresh, setRefresh] = useState<boolean>(false);
   const userContext = useUserContext();
   const user = userContext?.user;
 
@@ -44,33 +45,19 @@ const RecipeDetailPage = () => {
       }
     };
     fetchSingleRecipe();
-  }, [id, recipe?.recipe_favorites]);
+  }, [id, refresh]);
 
   if (!recipe) {
     return <p>No result</p>;
   }
+  const selectedRecipe = recipe.recipe_favorites;
+  const isFavorite = selectedRecipe.some((fav) => fav.recipe_id === recipe.id);
 
-  const toggleFavorite = async (recipeId: string) => {
-    const selectedRecipe = recipe.recipe_favorites;
-
+  const addFavorite = async (recipeId: string) => {
     if (!selectedRecipe) {
       return;
     }
     const isFavorite = selectedRecipe.some((fav) => fav.recipe_id === recipeId);
-
-    if (isFavorite) {
-      const supabaseDeleteResponse = await supabaseClient
-        .from("recipe_favorites")
-        .delete()
-        .eq("recipe_id", recipe.id)
-        .eq("user_id", user.id);
-
-      if (supabaseDeleteResponse.error) {
-        console.error("Error deleting favorite", supabaseDeleteResponse.error);
-      } else {
-        console.log("Previous favorite recipe successfully deleted");
-      }
-    }
     if (!isFavorite) {
       const favoriteRecipeResponse = await supabaseClient
         .from("recipe_favorites")
@@ -82,6 +69,28 @@ const RecipeDetailPage = () => {
         );
       } else {
         console.log("Favorite recipe successfully saved");
+        setRefresh((prev) => !prev);
+      }
+    }
+  };
+
+  const deleteFavorite = async (recipeId: string) => {
+    if (!selectedRecipe) {
+      return;
+    }
+
+    if (isFavorite) {
+      const supabaseDeleteResponse = await supabaseClient
+        .from("recipe_favorites")
+        .delete()
+        .eq("recipe_id", recipeId)
+        .eq("user_id", user.id);
+
+      if (supabaseDeleteResponse.error) {
+        console.error("Error deleting favorite", supabaseDeleteResponse.error);
+      } else {
+        console.log("Previous favorite recipe successfully deleted");
+        setRefresh((prev) => !prev);
       }
     }
   };
@@ -111,16 +120,13 @@ const RecipeDetailPage = () => {
 
         <h2>Zusätzliche Informationen</h2>
         <p>{recipe.description}</p>
-        <div
-          className="quiz-favorite-icon"
-          onClick={() => toggleFavorite(recipe.id)}
-        >
+        <div className="quiz-favorite-icon">
           {recipe.recipe_favorites.find(
             (favorite) => favorite.recipe_id === recipe.id
           ) ? (
-            <FaStar />
+            <FaStar onClick={() => deleteFavorite(recipe.id)} />
           ) : (
-            <FaRegStar />
+            <FaRegStar onClick={() => addFavorite(recipe.id)} />
           )}
         </div>
       </main>
