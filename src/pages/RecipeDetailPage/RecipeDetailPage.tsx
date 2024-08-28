@@ -61,7 +61,10 @@ const RecipeDetailPage = () => {
     if (!isFavorite) {
       const favoriteRecipeResponse = await supabaseClient
         .from("recipe_favorites")
-        .insert({ recipe_id: recipe.id });
+        .insert({ recipe_id: recipe.id })
+        .eq("recipe_id", recipeId)
+        .eq("user_id", user.id);
+
       if (favoriteRecipeResponse.error) {
         console.error(
           "Favorite recipe could not be saved",
