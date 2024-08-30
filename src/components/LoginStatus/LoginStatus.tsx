@@ -21,7 +21,7 @@ const LoginStatus = () => {
   };
 
   return (
-    <div >
+    <div className="login-status">
       {user ? (
         
         <div className="login-status">
