@@ -7,3 +7,16 @@
 .profile-page p {
     margin-bottom: 1rem;
 }
+
+.avatar-image {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
+.upload-container {
+    margin: 1rem 0;
+}
+
+.profile-page button {
+    margin-bottom: 1rem;
+}

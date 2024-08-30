@@ -5,6 +5,7 @@ import supabaseClient from "../../lib/supabaseClient";
 
 const LoginStatus = () => {
   const userContext = useUserContext();
+  const avatarUrl = userContext?.avatarUrl
   const user = userContext?.user;
 
   const handleLogoutClicked = async (e: React.MouseEvent) => {
@@ -20,9 +21,11 @@ const LoginStatus = () => {
   };
 
   return (
-    <div className="login-status">
+    <div >
       {user ? (
-        <div>
+        
+        <div className="login-status">
+          <img src={avatarUrl ? avatarUrl : undefined} alt=""  className="login-avatar"/>
           <span>Welcome, </span>
           <span>
             <Link to="/profile">{user.email}</Link>

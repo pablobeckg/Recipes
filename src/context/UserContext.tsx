@@ -6,6 +6,8 @@ interface IUserContext {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   loading: boolean;
+  avatarUrl: string | null;
+  setAvatarUrl: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const UserContext = createContext<IUserContext | null>(null);
@@ -13,6 +15,7 @@ const UserContext = createContext<IUserContext | null>(null);
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchSession = async () => {
@@ -29,7 +32,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser, loading }}>
+    <UserContext.Provider value={{ user, setUser, loading, avatarUrl, setAvatarUrl }}>
       {children}
     </UserContext.Provider>
   );

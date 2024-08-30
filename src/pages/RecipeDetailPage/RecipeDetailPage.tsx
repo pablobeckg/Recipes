@@ -51,13 +51,13 @@ const RecipeDetailPage = () => {
     return <p>No result</p>;
   }
   const selectedRecipe = recipe.recipe_favorites;
-  const isFavorite = selectedRecipe.some((fav) => fav.recipe_id === recipe.id);
+  const isFavorite = selectedRecipe.some((fav: { recipe_id: string; }) => fav.recipe_id === recipe.id);
 
   const addFavorite = async (recipeId: string) => {
     if (!selectedRecipe) {
       return;
     }
-    const isFavorite = selectedRecipe.some((fav) => fav.recipe_id === recipeId);
+    const isFavorite = selectedRecipe.some((fav: { recipe_id: string; }) => fav.recipe_id === recipeId);
     if (!isFavorite) {
       const favoriteRecipeResponse = await supabaseClient
         .from("recipe_favorites")
@@ -125,7 +125,7 @@ const RecipeDetailPage = () => {
         <p>{recipe.description}</p>
         <div className="quiz-favorite-icon">
           {recipe.recipe_favorites.find(
-            (favorite) => favorite.recipe_id === recipe.id
+            (favorite: { recipe_id: any; }) => favorite.recipe_id === recipe.id
           ) ? (
             <FaStar onClick={() => deleteFavorite(recipe.id)} />
           ) : (
