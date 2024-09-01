@@ -20,8 +20,6 @@ const ProfilePage = () => {
   const [profile, setProfile] = useState<Profile>();
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState<boolean>(false);
-  // const {avatarUrl, setAvatarUrl} = useUserContext()
-  // const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
   if (!user) {
     return;
