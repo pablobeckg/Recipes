@@ -20,7 +20,7 @@ const Favoriten = () => {
       let selectQuery = supabaseClient
         .from("recipes")
         .select("*, ingredients(*), recipe_favorites(recipe_id)")
-        .eq('user_id', user.id)
+        .eq('recipe_favorites.user_id', user.id)
       const result = await selectQuery;
 
       if (result.error) {
